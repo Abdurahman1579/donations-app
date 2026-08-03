@@ -126,9 +126,11 @@
               <tr>
                 <th class="p-3">Guyyaa / ቀን</th>
                 <th class="p-3">Maqaa / ስም</th>
+                <th class="p-3">Saala / ጾታ</th>
                 <th class="p-3">Bilbila/Email / ስልክ/ኢመይል</th>
                 <th class="p-3">Hamma / መጠን</th>
                 <th class="p-3">Haala kaffaltii / የክፍያ ሁኔታ</th>
+                <th class="p-3">Hordoffii (Frequency) / ድግግሞሽ</th>
                 <th class="p-3">Karaa Kaffaltii / የክፍያ መንገድ</th>
                 <th class="p-3">Nagahee / ደረሰኝ</th>
                 <th class="p-3">Ergaa / መልእክት</th>
@@ -136,7 +138,7 @@
             </thead>
             <tbody id="tableBody" class="divide-y">
               <tr>
-                <td colspan="8" class="p-6 text-center text-slate-400">
+                <td colspan="10" class="p-6 text-center text-slate-400">
                   Fe'amaa jira...
                 </td>
               </tr>
@@ -172,7 +174,7 @@
       async function loadDashboardData() {
         const tableBody = document.getElementById("tableBody");
         tableBody.innerHTML =
-          '<tr><td colspan="8" class="p-6 text-center text-slate-400">Loading data...</td></tr>';
+          '<tr><td colspan="10" class="p-6 text-center text-slate-400">Loading data...</td></tr>';
 
         const { data, error } = await supabaseClient
           .from("donations")
@@ -180,13 +182,13 @@
           .order("created_at", { ascending: false });
 
         if (error) {
-          tableBody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-red-500">Dogoggora: ${error.message}</td></tr>`;
+          tableBody.innerHTML = `<tr><td colspan="10" class="p-6 text-center text-red-500">Dogoggora: ${error.message}</td></tr>`;
           return;
         }
 
         if (!data || data.length === 0) {
           tableBody.innerHTML =
-            '<tr><td colspan="8" class="p-6 text-center text-slate-400">Gumaachi galmaa\'e hin jiru.</td></tr>';
+            '<tr><td colspan="10" class="p-6 text-center text-slate-400">Gumaachi galmaa\'e hin jiru.</td></tr>';
           document.getElementById("totalPaid").innerText = "0 ETB";
           document.getElementById("paidUsersCount").innerText = "0 Namoota";
           document.getElementById("totalPledged").innerText = "0 ETB";
@@ -233,6 +235,42 @@
             ? `<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-bold text-xs inline-block">Kaffalameera / ተከፍለዋል ✅</span>`
             : `<span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full font-bold text-xs inline-block">Niyyaa / ተስፋ ተሰጥቷል ⏳</span>`;
 
+          // Format Gender display
+          let genderDisplay = "-";
+          if (item.gender) {
+            if (
+              item.gender.toLowerCase() === "dhiira" ||
+              item.gender.toLowerCase() === "male"
+            ) {
+              genderDisplay = `<span class="text-blue-700 font-semibold">Dhiira / ወንድ 👨</span>`;
+            } else if (
+              item.gender.toLowerCase() === "dubartii" ||
+              item.gender.toLowerCase() === "female"
+            ) {
+              genderDisplay = `<span class="text-pink-700 font-semibold">Dubartii / ሴት 👩</span>`;
+            } else {
+              genderDisplay = item.gender;
+            }
+          }
+
+          // Extract Frequency from message if available
+          let frequencyText = "-";
+          let cleanMessage = item.message || "-";
+          if (item.message && item.message.includes("Frequency:")) {
+            const parts = item.message.split(
+              "[Hordoffii Kaffaltii / Frequency:",
+            );
+            cleanMessage = parts[0].trim();
+            if (parts[1]) {
+              frequencyText = parts[1].replace("]", "").trim();
+            }
+          }
+
+          const frequencyBadge =
+            frequencyText !== "-"
+              ? `<span class="px-2 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded-md font-semibold text-xs inline-block">${frequencyText}</span>`
+              : `<span class="text-slate-400 font-medium">-</span>`;
+
           const receiptButton = item.receipt_url
             ? `<a href="${item.receipt_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 text-xs bg-emerald-100 text-emerald-800 rounded-md hover:bg-emerald-200 font-semibold transition">🖼️ Ilaali / እይ</a>`
             : `<span class="text-slate-400 font-medium">-</span>`;
@@ -241,12 +279,14 @@
           <tr class="hover:bg-slate-50 transition border-b border-slate-100">
             <td class="p-3 text-slate-500 text-xs">${date}</td>
             <td class="p-3 font-semibold text-slate-800">${item.name || "-"}</td>
+            <td class="p-3 text-xs">${genderDisplay}</td>
             <td class="p-3 font-mono text-slate-600">${item.contact || "-"}</td>
             <td class="p-3 font-bold text-emerald-700">+${(item.amount || 0).toLocaleString()} ETB</td>
             <td class="p-3">${statusBadge}</td>
+            <td class="p-3">${frequencyBadge}</td>
             <td class="p-3 text-slate-600 font-medium">${item.payment_method || "-"}</td>
             <td class="p-3 text-xs">${receiptButton}</td>
-            <td class="p-3 text-slate-600 text-xs max-w-xs truncate">${item.message || "-"}</td>
+            <td class="p-3 text-slate-600 text-xs max-w-xs truncate">${cleanMessage}</td>
           </tr>
         `;
         });
