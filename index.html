@@ -374,7 +374,7 @@
           </form>
         </div>
 
-        <!-- Bank Info Section with Direct App Deep Links -->
+        <!-- Bank Info Section with Direct App Deep Links & USSD -->
         <div class="space-y-6">
           <div
             class="bg-white p-6 md:p-8 rounded-2xl shadow-md border-l-4 border-emerald-600 space-y-3"
@@ -384,14 +384,14 @@
             >
               <span>Herrega Baankii / የባንክ ሂሳብ</span>
               <span class="text-xs font-normal text-emerald-700"
-                >(Appii Baankii banuuf tuqaa / ለመክፈት ይንኩ)</span
+                >(App/USSD Baankii banuuf tuqaa)</span
               >
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <!-- CBE: Deep Link + Copy Fallback -->
+              <!-- CBE: Deep Link + USSD Fallback -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('cbe', '1000571176878', this)"
+                onclick="openBankingApp('cbe', '1000571176878', '*847#', this)"
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -399,22 +399,23 @@
                   <span>CBE / የኢትዮጵያ ንግድ ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   1000571176878
+                  <span class="text-xs text-blue-600 font-normal">(*847#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
 
               <!-- Awash Bank -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('awash', '013XXXXXXXXX', this)"
+                onclick="openBankingApp('awash', '013XXXXXXXXX', '*901#', this)"
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -422,22 +423,25 @@
                   <span>Awash Bank / አዋሽ ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   013XXXXXXXXX
+                  <span class="text-xs text-blue-600 font-normal">(*901#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
 
               <!-- Abyssinia Bank -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('abyssinia', '011XXXXXX', this)"
+                onclick="
+                  openBankingApp('abyssinia', '011XXXXXX', '*859#', this)
+                "
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -445,22 +449,25 @@
                   <span>Abyssinia / አቢሲኒያ ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   011XXXXXX
+                  <span class="text-xs text-blue-600 font-normal">(*859#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
 
               <!-- Zamzam Bank -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('zamzam', '0037925310301', this)"
+                onclick="
+                  openBankingApp('zamzam', '0037925310301', '*789#', this)
+                "
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -468,22 +475,25 @@
                   <span>Zamzam Bank / ዘምዘም ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   0037925310301
+                  <span class="text-xs text-blue-600 font-normal">(*789#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
 
               <!-- Hijra Bank -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('hijra', '1004930540001', this)"
+                onclick="
+                  openBankingApp('hijra', '1004930540001', '*858#', this)
+                "
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -491,22 +501,25 @@
                   <span>Hijra Bank / ሂጅራ ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   1004930540001
+                  <span class="text-xs text-blue-600 font-normal">(*858#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
 
               <!-- Hibret Bank -->
               <div
                 class="bg-slate-50 p-3 rounded-lg border cursor-pointer hover:bg-emerald-50 transition relative group"
-                onclick="openBankingApp('hibret', '4059814990924016', this)"
+                onclick="
+                  openBankingApp('hibret', '4059814990924016', '*814#', this)
+                "
               >
                 <p
                   class="text-xs text-slate-500 font-medium flex justify-between items-center"
@@ -514,23 +527,23 @@
                   <span>Hibret Bank / ህብረት ባንክ</span>
                   <span
                     class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold"
-                    >App ↗</span
+                    >App & USSD ↗</span
                   >
                 </p>
                 <p class="font-mono text-base font-bold text-slate-800 mt-1">
                   4059814990924016
+                  <span class="text-xs text-blue-600 font-normal">(*814#)</span>
                 </p>
                 <span
                   class="copy-feedback text-[10px] text-emerald-600 font-bold absolute top-2 right-3 hidden"
-                  >Copied! & Opened App! ✓</span
+                  >Copied! & Opened ✓</span
                 >
               </div>
             </div>
             <p class="text-xs text-emerald-800 font-medium pt-2">
               Lakkoofsa baankii yeroo tuqtan lakkoofsi kun
               <b>automatic kopii</b> ta'uun appilikeeshinii baankii sanaa (App)
-              akka banuuf yaalii godha. Yoo appichi bilbila keessan irratti hin
-              fe'amne Play Store/App Store irra akka deemu taasisa.[cite: 2]
+              ykn USSD (fkn: *847#) akka banuuf yaalii godha[cite: 2].
             </p>
           </div>
 
@@ -1036,8 +1049,8 @@
       // Default tab view on open
       switchTab("payNow");
 
-      // Advanced function for handling Banking App Deep Links with clipboard auto-copy fallback
-      function openBankingApp(bankKey, accountNumber, element) {
+      // Combined App Deep Link & USSD Integration Function
+      function openBankingApp(bankKey, accountNumber, ussdCode, element) {
         // 1. Copy the account number automatically
         navigator.clipboard
           .writeText(accountNumber)
@@ -1054,14 +1067,13 @@
             console.error("Copy failed: ", err);
           });
 
-        // 2. Define custom Deep Link schemes or Universal App store fallbacks for Ethiopian Mobile Banking Apps
+        // 2. Define custom Deep Link schemes or Universal App store fallbacks
         let deepLinkSchema = "";
         let storeFallbackUrl = "";
 
         switch (bankKey) {
           case "cbe":
-            // CBE Birr / CBE Mobile App custom scheme intent or universal fallback
-            deepLinkSchema = "cbebirr://"; // or intent based structure
+            deepLinkSchema = "cbebirr://";
             storeFallbackUrl =
               "https://play.google.com/store/apps/details?id=com.combanketh.mobilebanking";
             break;
@@ -1094,19 +1106,19 @@
             return;
         }
 
-        // 3. Trigger App Intent with a smart timeout fallback to App/Play Store if app isn't installed
+        // 3. Trigger App Intent with fallback to USSD / Store if app fails to open
         const startTime = Date.now();
-
-        // Attempt to open the custom URI scheme
         window.location.href = deepLinkSchema;
 
-        // If the app doesn't open within 1.5 seconds, redirect the user to download the app or notify them
         setTimeout(function () {
           if (Date.now() - startTime < 2000) {
-            // User likely doesn't have the app installed, or mobile browser blocked schema; offer store link
-            if (
+            // App didn't open, fallback to launching USSD dialer directly if provided
+            if (ussdCode) {
+              const formattedUssd = ussdCode.replace("#", "%23");
+              window.location.href = `tel:${formattedUssd}`;
+            } else if (
               confirm(
-                "Appilikeeshiniin baankii kun bilbila keessan irratti hin argamne ykn Kallattiin banuu hin danda'amne. Appicha buusuu (Play Store) ni barbaadduu? / Lakkofsi herregichaa garuu Copied ta'eera!",
+                "Appilikeeshiniin baankii kun bilbila keessan irratti hin argamne. Appicha buusuu ni barbaadduu? (Lakkoofsi herregichaa garuu Copied ta'eera!)",
               )
             ) {
               window.location.href = storeFallbackUrl;
